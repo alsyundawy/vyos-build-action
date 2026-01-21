@@ -8,7 +8,7 @@ on:
 
 env:
   GIT_CLONE_URL: https://github.com/vyos/vyos-build
-  DEBIAN_MIRROR: http://ftp.us.debian.org/debian/
+  DEBIAN_MIRROR: http://deb.debian.org/debian/
   BRANCH: equuleus
   BUILD_ARCH: amd64
   BUILD_BY: vyos-build-action@github.com
@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Clone Source Code
         run: |
@@ -45,7 +45,7 @@ jobs:
          wget -P  packages/ http://http.us.debian.org/debian/pool/main/i/ipset/libipset11_6.38-1.2_amd64.deb
     
       - name: Download kernel deb from my another repo
-        uses: robinraju/release-downloader@v1.7
+        uses: robinraju/release-downloader@v1.12
         with:
          repository: "debiansid/vyos-kernel-lts-build"
          latest: true
@@ -53,7 +53,7 @@ jobs:
          out-file-path: "vyos-build/packages/"
        
       - name: Download iptables deb from my another repo
-        uses: robinraju/release-downloader@v1.7
+        uses: robinraju/release-downloader@v1.12
         with:
          repository: "debiansid/iptables-fullconenat"
          tag: "debian/1.8.2-4"
@@ -80,7 +80,7 @@ jobs:
 
     steps :
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v5
         with:
           name: vyos-${{ env.BUILD_VERSION }}-FULLCONENAT-${{ env.BUILD_ARCH }}.iso
           
