@@ -7,7 +7,7 @@ on:
       - "v1.5*FULL*"
   workflow_dispatch:
   schedule:
-    - cron: 30 3 * * *
+    - cron: 15 3 * * *
 
 env:
   GIT_CLONE_URL: https://github.com/vyos/vyos-build
@@ -69,7 +69,7 @@ jobs:
       
  
       - name: Upload release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.5.0
         with:
           tag_name: ${{ github.ref_name }}
           files: vyos-build/build/vyos-${{ env.VERSION }}-*.iso
