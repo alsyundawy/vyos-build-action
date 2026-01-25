@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - 'v1.3.8*'
+  workflow_dispatch:
+  schedule:
+    - cron: 45 2 * * *
 
 env:
   GIT_CLONE_URL: https://github.com/vyos/vyos-build
